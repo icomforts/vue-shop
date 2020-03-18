@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     deleteProduct(doc) {
-      if (confirm('確定要刪除項目嗎?')) {
+      if (confirm('確定要刪除此項目嗎?')) {
         db.collection("products").doc(doc).delete().then(function () {
           console.log("Document successfully deleted!");
         }).catch(function (error) {
