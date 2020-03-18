@@ -1,0 +1,43 @@
+@import '~bootstrap/scss/bootstrap';
+@import './admin.scss';
+
+@font-face {
+  font-family: TaipeiSansTC;
+  src: url(/fonts/TaipeiSansTCBeta-Regular.ttf);
+}
+
+* {
+  font-family: 'TaipeiSansTC';
+}
+
+body {
+  // background-color: pink;
+}
+.form-control {
+  font-family: sans-serif;
+}
+.custom-btn {
+  // border-radius: 10rem;
+  padding: 0.5rem 2.5rem;
+}
+
+// hide scroll bar
+.sidebar-content {
+  -ms-overflow-style: none; // IE 10+
+  overflow: -moz-scrollbars-none; // Firefox
+}
+
+.sidebar-content::-webkit-scrollbar {
+  display: none; // Safari and Chrome
+}
+
+.intro {
+  margin-top: 3rem;
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 1200px;
+  }
+}
