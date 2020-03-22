@@ -32,7 +32,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                  <button class="btn btn-primary" @click="editProduct(product)">修改</button>
+                  <button class="btn btn-primary" @click="editProduct(product)">修11111111111111改</button>
                   <button class="btn btn-danger" @click="deleteProduct(product)">刪除</button>
                 </td>
               </tr>
