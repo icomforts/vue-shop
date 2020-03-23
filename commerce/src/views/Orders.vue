@@ -8,7 +8,7 @@
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, ducimus.</p>
           </div>
           <div class="col-md-6">
-            <img src="/img/svg/overview.svg" alt class="img-fluid" />
+            <img src="/img/svg/orders.svg" alt class="img-fluid" />
           </div>
         </div>
       </div>

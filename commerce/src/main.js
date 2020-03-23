@@ -2,9 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import jQuery from 'jquery'
-import {
-  fb
-} from './firebase'
+import {fb} from './firebase'
 import VueFirestore from 'vue-firestore'
 
 require('firebase/firestore')
@@ -16,6 +14,9 @@ Vue.use(VueFirestore, {
 
 
 Vue.use(VueFirestore)
+
+import VueFilters from 'vue2-filters';
+Vue.use(VueFilters);
 
 window.$ = window.jQuery = jQuery
 import 'popper.js'
@@ -39,6 +40,10 @@ window.Toast = Toast;
 
 
 Vue.component('Navbar', require('./components/Navbar.vue').default)
+// Vue.component('products-list', require('./sections/ProductList.vue').default)
+
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
 
 Vue.config.productionTip = false
 

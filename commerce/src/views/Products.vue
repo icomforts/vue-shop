@@ -8,7 +8,7 @@
             <p>在這裡，您可以管理您的商品。</p>
           </div>
           <div class="col-md-6">
-            <img src="/img/svg/overview.svg" alt class="img-fluid" />
+            <img src="/img/svg/products.svg" alt class="img-fluid" />
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                  <button class="btn btn-primary" @click="editProduct(product)">修11111111111111改</button>
+                  <button class="btn btn-primary" @click="editProduct(product)">修改</button>
                   <button class="btn btn-danger" @click="deleteProduct(product)">刪除</button>
                 </td>
               </tr>
@@ -139,11 +139,11 @@
 </template>
 
 <script>
-import { VueEditor } from 'vue2-editor'
-import { fb, db } from '../firebase'
+import { VueEditor } from "vue2-editor";
+import { fb, db } from "../firebase";
 
 export default {
-  name: 'Products',
+  name: "Products",
   components: {
     VueEditor
   },
@@ -153,6 +153,7 @@ export default {
 
   data() {
     return {
+      products: [],
       product: {
         name: null,
         description: null,
@@ -163,69 +164,138 @@ export default {
       activeItem: null,
       modal: null,
       tag: null
-    }
+    };
   },
 
   firestore() {
     return {
-      products: db.collection('products')
-    }
+      products: db.collection("products")
+    };
   },
   methods: {
-    uploadImage() { },
+    deleteImage(img, index) {
+      let image = fb.storage().refFromURL(img);
+
+      this.product.images.splice(index, 1);
+
+      image
+        .delete()
+        .then(function() {
+          console.log("image deleted");
+        })
+        .catch(function(error) {
+          // Uh-oh, an error occurred!
+          console.log("an error occurred");
+        });
+    },
+    addTag() {
+      this.product.tags.push(this.tag);
+      this.tag = "";
+    },
+    uploadImage(e) {
+      if (e.target.files[0]) {
+        let file = e.target.files[0];
+
+        var storageRef = fb
+          .storage()
+          .ref("products/" + Math.random() + "_" + file.name);
+
+        let uploadTask = storageRef.put(file);
+
+        uploadTask.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            // Handle unsuccessful uploads
+          },
+          () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+              this.product.images.push(downloadURL);
+            });
+          }
+        );
+      }
+    },
+    reset() {
+      this.product = {
+        name: null,
+        description: null,
+        price: null,
+        tags: [],
+        images: []
+      };
+    },
 
     addNew() {
-      this.product = {}
-      this.modal = 'new'
-      $('#product').modal('show')
+      this.modal = "new";
+      this.reset();
+      $("#product").modal("show");
     },
     updateProduct() {
       this.$firestore.products.doc(this.product.id).update(this.product);
       Toast.fire({
-        type: 'success',
-        title: '更新成功'
-      })
+        icon: "success",
+        title: "保存成功"
+      });
 
-      $('#product').modal('hide');
+      $("#product").modal("hide");
     },
     editProduct(product) {
-      this.modal = 'edit'
-      this.product = product
-      $('#product').modal('show')
+      this.modal = "edit";
+      this.product = product;
+      $("#product").modal("show");
     },
     deleteProduct(doc) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
+        title: "確定要刪除嗎?",
+        icon: "warning",
+        text: "您將無法還原!",
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
       }).then(result => {
         if (result.value) {
-          this.$firestore.products.doc(doc.id).delete()
+          this.$firestore.products.doc(doc.id).delete();
 
           Toast.fire({
-            type: 'success',
-            title: '刪除成功'
-          })
+            icon:"success",
+            type: "success",
+            title: "刪除成功"
+          });
         }
-      })
+      });
     },
-    readData() { },
-    addProduct: function () {
-      this.$firestore.products.add(this.product)
+    readData() {},
+    addProduct: function() {
+      this.$firestore.products.add(this.product);
       Toast.fire({
-        type: 'success',
-        title: '新增成功'
-      })
-      $('#product').modal('hide')
+        icon: "success",
+        type: "success",
+        title: "新增成功"
+      });
+      $("#product").modal("hide");
     }
   },
-  created() { }
-}
+  created() {}
+};
 </script>
 //
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.img-wrapp {
+  position: relative;
+}
+.img-wrapp span.delete-img {
+  position: absolute;
+  top: -14px;
+  left: -2px;
+}
+.img-wrapp span.delete-img:hover {
+  cursor: pointer;
+}
+</style>

@@ -9,7 +9,7 @@
 
                         <carousel :perPage="1">
                           <slide v-for="(image, index) in product.images">
-                                <img :src="image" class="card-img-top" alt="..." width="250px">
+                                <img :src="image" class="card-img-top" alt="..." width="450px" height="250px">
                           </slide>
                         </carousel>
                 
