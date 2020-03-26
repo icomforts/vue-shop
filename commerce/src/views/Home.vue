@@ -2,23 +2,24 @@
   <div class="home">
     <Navbar></Navbar>
     <Hero />
-    <ProductList />
+    <products-list />
     <login></login>
+    <mini-cart></mini-cart>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Hero from '@/components/Hero.vue'
-import ProductList from '@/sections/ProductList.vue'
-import Login from '@/components/Login.vue'
+import Hero from "@/components/Hero.vue";
+// import Products from '@/sections/Products.vue'
+import Login from "@/components/Login.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Hero,
-    ProductList,
+    // Products,
     Login
   }
-}
+};
 </script>

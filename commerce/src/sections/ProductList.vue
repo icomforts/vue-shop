@@ -56,6 +56,7 @@ data(){
   methods:{
 
     getImage(images){
+      
       return images[0];
     }
 
