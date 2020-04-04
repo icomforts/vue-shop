@@ -31,7 +31,6 @@ export default {
         icon: "success",
         title: "成功加入購物車"
       });
-      console.log(this.item);
     }
   }
 };

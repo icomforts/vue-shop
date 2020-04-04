@@ -13,7 +13,7 @@
               </div>
               <div class="modal-body">
                   <ul>
-                    <li v-for="item in this.$store.state.cart" class="media">
+                    <li v-for="item in this.$store.state.cart" class="media pt-3">
                       <img :src="item.productImage" width="80px" class="align-self-center mr-3" alt="">
                       <div class="media-body">
                         <h5 class="mt-0">{{item.productName}}

@@ -4,7 +4,7 @@
       class="navbar custom-nav fixed-top navbar-expand-lg navbar-light bg-light"
     >
       <div class="container">
-        <router-link class="navbar-brand" to="/">Vue Shop</router-link>
+        <router-link class="navbar-brand" to="/">橘皮拍賣</router-link>
         <button
           class="navbar-toggler"
           type="button"
