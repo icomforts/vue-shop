@@ -1,5 +1,6 @@
-@import '~bootstrap/scss/bootstrap';
-@import './admin.scss';
+@import "~bootstrap/scss/bootstrap";
+@import "~paper-kit-2/assets/sass/paper-kit.scss";
+@import "./admin.scss";
 
 @font-face {
   font-family: TaipeiSansTC;
@@ -7,12 +8,13 @@
 }
 
 * {
-  font-family: 'TaipeiSansTC';
+  font-family: "TaipeiSansTC";
 }
 
 body {
-  // background-color: pink;
+  background-color: greenyellow;
 }
+
 .form-control {
   font-family: sans-serif;
 }

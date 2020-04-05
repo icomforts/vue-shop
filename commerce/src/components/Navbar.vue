@@ -1,8 +1,6 @@
 <template>
   <div class="hello">
-    <nav
-      class="navbar custom-nav fixed-top navbar-expand-lg navbar-light bg-light"
-    >
+    <nav class="navbar custom-nav fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <router-link class="navbar-brand" to="/">橘皮拍賣</router-link>
         <button
@@ -23,15 +21,11 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link" href="#"
-                >Products</router-link
-              >
+              <router-link to="/products" class="nav-link" href="#">Products</router-link>
             </li>
 
             <li class="nav-item">
-              <router-link to="/about" class="nav-link" href="#"
-                >About</router-link
-              >
+              <router-link to="/about" class="nav-link" href="#">About</router-link>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -45,8 +39,7 @@
               class="btn btn-outline-success my-2 my-sm-0"
               data-toggle="modal"
               data-target="#login"
-              >Get Start</a
-            >
+            >Get Start</a>
             <a
               class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0"
               data-toggle="modal"
@@ -63,12 +56,12 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: "Navbar",
   props: {
     msg: String
   },
   components: {}
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

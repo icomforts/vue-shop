@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar></Navbar>
+    <Navbar2></Navbar2>
     <Hero />
     <products-list />
     <login></login>
@@ -19,7 +19,7 @@ export default {
   components: {
     Hero,
     // Products,
-    Login
-  }
+    Login,
+  },
 };
 </script>
