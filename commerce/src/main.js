@@ -4,8 +4,13 @@ import router from "./router";
 import jQuery from "jquery";
 import { fb } from "./firebase";
 import VueFirestore from "vue-firestore";
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
 require("firebase/firestore");
+Vue.use(BootstrapVue);
+Vue.config.productionTip = false;
 
 Vue.use(VueFirestore, {
   key: "id", // the name of the property. Default is '.key'.
@@ -20,7 +25,6 @@ Vue.use(VueFilters);
 window.$ = window.jQuery = jQuery;
 import "popper.js";
 import "bootstrap";
-// import "./paper-kit.js";
 import "jquery.nicescroll";
 import "./assets/app.scss";
 

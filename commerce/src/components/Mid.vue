@@ -6,14 +6,16 @@
       style="background-image: url('/img/封面2.jpg'); "
     >
       <div class="filter"></div>
-      <div class="container">
-        <div class="motto text-center">
-          <h1>歡迎光臨</h1>
-          <h3>期待您能在五月花商店找到屬於您的商品</h3>
-          <br />
-          <!-- <a href="/" class="btn btn-outline-neutral btn-round mr-3"
-            ><i class="fa fa-play"></i>了解更多</a
-          > -->
+      <div class="content-center">
+        <div class="container">
+          <div class="motto text-center">
+            <h1 class="presentation-title">發生市集</h1>
+            <div class="fog-low"></div>
+            <div class="fog-low right"></div>
+          </div>
+          <h2 class="motto presentation-subtitle text-center">
+            在這裡您能找到心儀的商品
+          </h2>
         </div>
       </div>
     </div>
@@ -42,13 +44,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .mid {
-  // padding-top: 7rem;
   width: 100%;
   height: 100vh;
-  text-align: left;
 }
-.page-header {
-  // animation: move 8s infinite;
+.page-header .content-center {
+  margin-top: 0;
 }
 
 @keyframes move {

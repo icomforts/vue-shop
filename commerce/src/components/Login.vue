@@ -52,7 +52,7 @@
               >
                 <h5 class="text-center">管理員登入</h5>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
+                  <label for="exampleInputEmail1">Email(admin@me.com) </label>
                   <input
                     type="email"
                     v-model="email"
@@ -64,7 +64,7 @@
                   <small class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
+                  <label for="exampleInputPassword1">Password(admin123)</label>
                   <input
                     type="password"
                     @keyup.enter="login"
@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Email </label>
+                  <label for="email">Email</label>
                   <input
                     type="email"
                     v-model="email"

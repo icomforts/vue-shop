@@ -72,7 +72,7 @@
               </li>
               <li>
                 <router-link to="/admin/products">
-                  <i class="fab fa-amazon"></i>
+                  <i class="fas fa-archive"></i>
                   <span>產品</span>
                 </router-link>
               </li>

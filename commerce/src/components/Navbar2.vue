@@ -1,48 +1,62 @@
 <template>
   <div class="hello">
-    <nav
-      class="navbar navbar-expand-md fixed-top navbar-transparent"
-      color-on-scroll="150"
-    >
-      <div class="container">
-        <div class="navbar-translate">
-          <button
-            class="navbar-toggler navbar-toggler-right navbar-burger"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarToggler"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-bar"></span>
-            <span class="navbar-toggler-bar"></span>
-            <span class="navbar-toggler-bar"></span>
-          </button>
-          <a class="navbar-brand" href="https://www.creative-tim.com"
-            >五月花商店</a
-          >
-        </div>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-          <ul class="navbar-nav ml-auto"></ul>
-          <form class="form-inline my-2 my-lg-0">
-            <a
-              class="btn btn-outline-success my-2 my-sm-0"
-              data-toggle="modal"
-              data-target="#login"
-              >Get Start</a
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="logo">
+          <a href="/" class="nav-link">
+            <span class="link-text logo-text">發生市集</span>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fad"
+              data-icon="angle-double-right"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
             >
-            <a
-              class="btn btn-outline-info border-0 mx-2 my-2 my-sm-0"
-              data-toggle="modal"
-              data-target="#miniCart"
-            >
-              <i class="fas fa-cart-plus"></i>
-            </a>
-            <b-button pill>Button</b-button>
-          </form>
-        </div>
-      </div>
+              <g class="fa-group">
+                <path
+                  fill="currentColor"
+                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                  class="fa-secondary"
+                ></path>
+                <path
+                  fill="currentColor"
+                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                  class="fa-primary"
+                ></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#products" class="nav-link">
+            <i class="fas fa-archive"></i>
+            <span class="link-text">商品</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#miniCart">
+            <i class="fas fa-cart-plus"></i>
+            <span class="link-text">購物車</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#login">
+            <i class="fas fa-user"></i>
+            <span class="link-text">商品管理</span>
+          </a>
+        </li>
+
+        <li class="nav-item" id="themeButton">
+          <a href="#" class="nav-link">
+            <i class="fas fa-info-circle"></i>
+            <span class="link-text">關於發生</span>
+          </a>
+        </li>
+      </ul>
     </nav>
   </div>
 </template>
@@ -70,119 +84,206 @@ export default {
         }
       }
     });
-
-    ///RWD NAVBAR
-    $(document).on("click", ".navbar-toggler", function() {
-      if (pk.misc.navbar_menu_visible == 1) {
-        $("html").removeClass("nav-open");
-        pk.misc.navbar_menu_visible = 0;
-        setTimeout(function() {
-          $(".navbtn").removeClass("toggled");
-          $("#bodyClick").remove();
-        }, 550);
-      } else {
-        setTimeout(function() {
-          $(".navbtn").addClass("toggled");
-        }, 580);
-
-        $("html").addClass("nav-open");
-        pk.misc.navbar_menu_visible = 1;
-      }
-    });
-
-    var pk = {
-      misc: {
-        navbar_menu_visible: 0,
-      },
-
-      initPopovers: function() {
-        if ($('[data-toggle="popover"]').length != 0) {
-          $("body").append('<div class="popover-filter"></div>');
-
-          //    Activate Popovers
-          $('[data-toggle="popover"]')
-            .popover()
-            .on("show.bs.popover", function() {
-              $(".popover-filter").click(function() {
-                $(this).removeClass("in");
-                $('[data-toggle="popover"]').popover("hide");
-              });
-              $(".popover-filter").addClass("in");
-            })
-            .on("hide.bs.popover", function() {
-              $(".popover-filter").removeClass("in");
-            });
-        }
-      },
-      initCollapseArea: function() {
-        $('[data-toggle="pk-collapse"]').each(function() {
-          var thisdiv = $(this).attr("data-target");
-          $(thisdiv).addClass("pk-collapse");
-        });
-
-        $('[data-toggle="pk-collapse"]')
-          .hover(
-            function() {
-              var thisdiv = $(this).attr("data-target");
-              if (!$(this).hasClass("state-open")) {
-                $(this).addClass("state-hover");
-                $(thisdiv).css({
-                  height: "30px",
-                });
-              }
-            },
-            function() {
-              var thisdiv = $(this).attr("data-target");
-              $(this).removeClass("state-hover");
-
-              if (!$(this).hasClass("state-open")) {
-                $(thisdiv).css({
-                  height: "0px",
-                });
-              }
-            }
-          )
-          .click(function(event) {
-            event.preventDefault();
-
-            var thisdiv = $(this).attr("data-target");
-            var height = $(thisdiv)
-              .children(".panel-body")
-              .height();
-
-            if ($(this).hasClass("state-open")) {
-              $(thisdiv).css({
-                height: "0px",
-              });
-              $(this).removeClass("state-open");
-            } else {
-              $(thisdiv).css({
-                height: height + 30,
-              });
-              $(this).addClass("state-open");
-            }
-          });
-      },
-    };
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-// @media (max-width: 992px) {
-//   .navbar.custom-nav {
-//     padding-top: 16px;
-//     padding-bottom: 16px;
-//     background-color: #fff !important;
-//   }
-// }
+:root {
+  font-size: 16px;
+  font-family: "Open Sans";
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+  --transition-speed: 600ms;
+}
 
-@media screen and(max-width: 992px) {
-  .navbar-toggler {
-    float: right;
+.navbar {
+  position: fixed;
+  background-color: var(--bg-primary);
+  transition: width 600ms ease;
+  overflow: hidden;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  filter: grayscale(0%) opacity(1);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+
+.nav-link svg,
+.nav-link i {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.fa-primary {
+  color: #ff7eee;
+}
+
+.fa-secondary {
+  color: #df49a6;
+}
+
+.fa-primary,
+.fa-secondary {
+  transition: var(--transition-speed);
+}
+
+.logo {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  font-size: 1.5rem;
+  letter-spacing: 0.3ch;
+  width: 100%;
+}
+
+.logo svg {
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
+}
+
+.logo-text {
+  display: inline;
+  position: absolute;
+  left: -999px;
+  transition: var(--transition-speed);
+}
+
+.navbar:hover .logo svg {
+  transform: rotate(-180deg);
+}
+
+/* Small screens */
+@media only screen and (max-width: 1024px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 3rem;
+    background: gray;
+    display: flex;
   }
-  #navbtn {
+
+  .logo {
+    display: none;
   }
+
+  .navbar-nav {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    display: flex;
+    position: fixed;
+  }
+
+  .nav-link {
+    justify-content: center;
+  }
+  .nav-link i {
+    color: white;
+  }
+
+  main {
+    margin: 0;
+  }
+}
+
+/* Large screens */
+@media only screen and (min-width: 991px) {
+  .navbar {
+    top: 0;
+    width: 5rem;
+    height: 100vh;
+  }
+
+  .navbar:hover {
+    width: 16rem;
+  }
+
+  .navbar:hover .link-text {
+    display: inline;
+  }
+
+  .navbar:hover .logo svg {
+    margin-left: 11rem;
+  }
+
+  .navbar:hover .logo-text {
+    left: 0px;
+  }
+}
+
+.dark {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+}
+
+.light {
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --bg-primary: #ffffff;
+  --bg-secondary: #e4e4e4;
+}
+
+.solar {
+  --text-primary: #576e75;
+  --text-secondary: #35535c;
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #f5e5b8;
+}
+
+.theme-icon {
+  display: none;
+}
+
+.dark #darkIcon {
+  display: block;
+}
+
+.light #lightIcon {
+  display: block;
+}
+
+.solar #solarIcon {
+  display: block;
 }
 </style>

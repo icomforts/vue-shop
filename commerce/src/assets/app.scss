@@ -22,13 +22,20 @@ i {
   padding: 0.5rem 2.5rem;
 }
 
-// // hide scroll bar
-// .sidebar-content {
-//   -ms-overflow-style: none; // IE 10+
-//   overflow: -moz-scrollbars-none; // Firefox
-// }
 body {
   scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  width: 0.15rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(97, 97, 95);
 }
 
 .intro {
