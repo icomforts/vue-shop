@@ -4,8 +4,8 @@
       <div class="intro h-100">
         <div class="row h-100 justify-content-center align-items-center">
           <div class="col-md-6">
-            <h3>Orders Page</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, ducimus.</p>
+            <h3>訂單頁面</h3>
+            <p>在這裡，您可以管理目前訂單狀況。</p>
           </div>
           <div class="col-md-6">
             <img src="/img/svg/orders.svg" alt class="img-fluid" />
@@ -20,11 +20,10 @@
 export default {
   name: "Orders",
   props: {
-    msg: String
-  }
+    msg: String,
+  },
 };
 </script>
-// 
+//
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

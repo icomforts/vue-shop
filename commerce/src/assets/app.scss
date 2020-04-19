@@ -8,13 +8,12 @@
 }
 
 * {
-  font-family: "TaipeiSansTC";
+  font-family: "TaipeiSansTC" !important;
 }
 
-body {
-  background-color: greenyellow;
+i {
+  font-family: "Font Awesome 5 Free" !important;
 }
-
 .form-control {
   font-family: sans-serif;
 }
@@ -23,14 +22,13 @@ body {
   padding: 0.5rem 2.5rem;
 }
 
-// hide scroll bar
-.sidebar-content {
-  -ms-overflow-style: none; // IE 10+
-  overflow: -moz-scrollbars-none; // Firefox
-}
-
-.sidebar-content::-webkit-scrollbar {
-  display: none; // Safari and Chrome
+// // hide scroll bar
+// .sidebar-content {
+//   -ms-overflow-style: none; // IE 10+
+//   overflow: -moz-scrollbars-none; // Firefox
+// }
+body {
+  scroll-behavior: smooth;
 }
 
 .intro {

@@ -12,7 +12,11 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <ul class="nav nav-fill nav-pills mb-3" id="pills-tab" role="tablist">
+            <ul
+              class="nav nav-fill nav-pills mb-3"
+              id="pills-tab"
+              role="tablist"
+            >
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -22,7 +26,8 @@
                   role="tab"
                   aria-controls="pills-login"
                   aria-selected="true"
-                >Login</a>
+                  >登入</a
+                >
               </li>
               <li class="nav-item">
                 <a
@@ -33,7 +38,8 @@
                   role="tab"
                   aria-controls="pills-register"
                   aria-selected="false"
-                >Signup</a>
+                  >註冊</a
+                >
               </li>
             </ul>
 
@@ -44,9 +50,9 @@
                 role="tabpanel"
                 aria-labelledby="pills-login-tab"
               >
-                <h5 class="text-center">Login Please</h5>
+                <h5 class="text-center">管理員登入</h5>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
+                  <label for="exampleInputEmail1">Email</label>
                   <input
                     type="email"
                     v-model="email"
@@ -55,7 +61,7 @@
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
                   />
-                  <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <small class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
@@ -70,7 +76,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button class="btn btn-primary" @click="login">Login</button>
+                  <button class="btn btn-primary" @click="login">登入</button>
                 </div>
               </div>
               <div
@@ -79,21 +85,21 @@
                 role="tabpanel"
                 aria-labelledby="pills-register-tab"
               >
-                <h5 class="text-center">Create New Account</h5>
+                <h5 class="text-center">註冊</h5>
 
                 <div class="form-group">
-                  <label for="name">Your name</label>
+                  <label for="name">使用者名稱</label>
                   <input
                     type="text"
                     v-model="name"
                     class="form-control"
                     id="name"
-                    placeholder="Your nice name"
+                    placeholder="名稱"
                   />
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Email address</label>
+                  <label for="email">Email </label>
                   <input
                     type="email"
                     v-model="email"
@@ -115,7 +121,9 @@
                 </div>
 
                 <div class="form-group">
-                  <button class="btn btn-primary" @click="register">Signup</button>
+                  <button class="btn btn-primary" @click="register">
+                    註冊
+                  </button>
                 </div>
               </div>
             </div>
@@ -127,19 +135,19 @@
 </template>
 
 <script>
-import { fb, db } from '../firebase'
+import { fb, db } from "../firebase";
 
 export default {
-  name: 'Login',
+  name: "Login",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
       name: null,
       email: null,
-      password: null
-    }
+      password: null,
+    };
   },
 
   methods: {
@@ -148,55 +156,55 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           console.log(this.email + "," + this.password);
-          $('#login').modal('hide')
-          this.$router.replace('admin')
+          $("#login").modal("hide");
+          this.$router.replace("admin");
         })
-        .catch(function (error) {
+        .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code
-          var errorMessage = error.message
-          if (errorCode === 'auth/wrong-password') {
-            alert('密碼錯誤')
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === "auth/wrong-password") {
+            alert("密碼錯誤");
           } else {
-            alert(errorMessage)
+            alert(errorMessage);
           }
-          console.log(error)
-        })
+          console.log(error);
+        });
     },
     register() {
       fb.auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(user => {
-          $('#login').modal('hide')
+        .then((user) => {
+          $("#login").modal("hide");
 
-          db.collection('profiles')
+          db.collection("profiles")
             .doc(user.user.uid)
             .set({
-              name: this.name
+              name: this.name,
             })
-            .then(function () {
-              console.log('Document successfully written!')
+            .then(function() {
+              console.log("Document successfully written!");
             })
-            .catch(function (error) {
-              console.error('Error writing document: ', error)
-            })
+            .catch(function(error) {
+              console.error("Error writing document: ", error);
+            });
 
-          this.$router.replace('admin')
+          this.$router.replace("admin");
         })
-        .catch(function (error) {
+        .catch(function(error) {
           // Handle Errors here.
-          var errorCode = error.code
-          var errorMessage = error.message
-          if (errorCode == 'auth/weak-password') {
-            alert('The password is too weak.')
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode == "auth/weak-password") {
+            alert("The password is too weak.");
           } else {
-            alert(errorMessage)
+            alert(errorMessage);
           }
-          console.log(error)
-        })
-    }
-  }
-}
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

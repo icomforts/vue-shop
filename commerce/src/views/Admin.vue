@@ -14,7 +14,7 @@
           <!-- sidebar-brand  -->
           <div class="sidebar-item sidebar-brand">
             <router-link to="/">
-              <a href="#">Vue Shop</a>
+              <a href="#">五月花商店</a>
             </router-link>
             <div id="close-sidebar" @click="closeMenu">
               <i class="fas fa-times"></i>
@@ -47,7 +47,7 @@
                 <input
                   type="text"
                   class="form-control search-menu"
-                  placeholder="Search..."
+                  placeholder="搜尋..."
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
@@ -67,32 +67,32 @@
               <li>
                 <router-link to="/admin/overview">
                   <i class="fa fa-chart-line"></i>
-                  <span>Overview</span>
+                  <span>銷售圖表</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/admin/products">
                   <i class="fab fa-amazon"></i>
-                  <span>Products</span>
+                  <span>產品</span>
                 </router-link>
               </li>
               <li>
                 <router-link to="/admin/orders">
                   <i class="fa fa-shopping-cart"></i>
-                  <span>Orders</span>
+                  <span>訂單</span>
                 </router-link>
               </li>
 
               <li>
                 <router-link to="/admin/profile">
                   <i class="fa fa-user"></i>
-                  <span>Profile</span>
+                  <span>個人資料</span>
                 </router-link>
               </li>
               <li>
                 <a href="#" @click="logout()">
                   <i class="fa fa-power-off"></i>
-                  <span>Logout</span>
+                  <span>登出</span>
                 </a>
               </li>
             </ul>
@@ -112,41 +112,41 @@
 
 <script>
 // @ is an alias to /src
-import Hero from '@/components/Hero.vue'
-import { fb } from '../firebase'
+import Mid from "@/components/Mid.vue";
+import { fb } from "../firebase";
 
 export default {
-  name: 'admin',
+  name: "admin",
   data() {
     return {
       name: null,
-      email: null
-    }
+      email: null,
+    };
   },
   components: {
-    Hero
+    Mid,
   },
   methods: {
     closeMenu() {
-      $('.page-wrapper').toggleClass('toggled')
+      $(".page-wrapper").toggleClass("toggled");
     },
     logout() {
       fb.auth()
         .signOut()
         .then(() => {
-          this.$router.replace('/')
+          this.$router.replace("/");
         })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 
   created() {
-    let user = fb.auth().currentUser
-    this.email = user.email
-  }
-}
+    let user = fb.auth().currentUser;
+    this.email = user.email;
+  },
+};
 </script>
 
 <style></style>

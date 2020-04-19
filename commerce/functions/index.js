@@ -16,7 +16,7 @@ exports.CheckoutSession = functions.https.onRequest((request, response) => {
       id: 2;
     }
     const productsArray = [];
-    myProducts.forEach(item => {
+    myProducts.forEach((item) => {
       const p = admin
         .firestore()
         .doc(`products/${item[0]}`)
@@ -28,14 +28,14 @@ exports.CheckoutSession = functions.https.onRequest((request, response) => {
 
     const results = [];
 
-    all.forEach(item => {
+    all.forEach((item) => {
       const data = {};
       data.amount = parseFloat(item.data().price * 100);
       data.currency = "TWD";
       data.description = item.data().description;
       data.name = item.data().name;
 
-      myProducts.forEach(q => {
+      myProducts.forEach((q) => {
         if (item.id == q[0]) {
           data.quantity = q[1];
         }
@@ -65,10 +65,10 @@ exports.CheckoutSession = functions.https.onRequest((request, response) => {
 
     stripe.checkout.sessions.create(
       {
-        success_url: "https://example.com/success",
-        cancel_url: "https://example.com/cancel",
+        success_url: "https://vue-shop-65048.web.app/",
+        cancel_url: "https://vue-shop-65048.web.app/checkout",
         payment_method_types: ["card"],
-        line_items: results
+        line_items: results,
       },
       function(err, session) {
         response.send(session);

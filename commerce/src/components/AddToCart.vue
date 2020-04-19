@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <button class="btn btn-primary" @click="addToCart">Add To Cart</button>
+    <button class="btn btn-default" @click="addToCart">購物車</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     pId: String,
     name: String,
     image: String,
-    price: String
+    price: String,
   },
   data() {
     return {
@@ -20,8 +20,8 @@ export default {
         productImage: this.image,
         productPrice: this.price,
         productId: this.pId,
-        productQuantity: 1
-      }
+        productQuantity: 1,
+      },
     };
   },
   methods: {
@@ -29,13 +29,12 @@ export default {
       this.$store.commit("addToCart", this.item);
       Toast.fire({
         icon: "success",
-        title: "成功加入購物車"
+        title: "成功加入購物車",
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

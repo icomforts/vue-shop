@@ -1,30 +1,38 @@
 <template>
   <div class="chekout">
-    <Navbar></Navbar>
+    <!-- <Navbar2></Navbar2> -->
 
     <div class="container mt-5 pt-5">
       <div class="row">
         <div class="col-md-8">
-          <h4 class="py-4">Checkout page</h4>
+          <h4 class="py-4">購物清單</h4>
           <ul>
             <li v-for="item in this.$store.state.cart" class="media pt-3">
-              <img :src="item.productImage" width="80px" class="align-self-center mr-3" alt />
+              <img
+                :src="item.productImage"
+                width="80px"
+                class="align-self-center mr-3"
+                alt
+              />
               <div class="media-body">
                 <h5 class="mt-0">
-                  {{item.productName}}
+                  {{ item.productName }}
                   <span
-                    class="float-right"
-                    @click="$store.commit('removeFromCart',item)"
-                  >X</span>
+                    class="float-right del"
+                    @click="$store.commit('removeFromCart', item)"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
                 </h5>
-                <p class="mt-0">{{item.productPrice | currency}}</p>
-                <p class="mt-0">Quantity : {{item.productQuantity }}</p>
+                <p class="mt-0">{{ item.productPrice | currency }}</p>
+                <p class="mt-0">數量 : {{ item.productQuantity }}</p>
+                <hr />
               </div>
             </li>
           </ul>
         </div>
         <div class="col-md-4">
-          <p>Total Price : {{ this.$store.getters.totalPrice | currency }}</p>
+          <p>金額 : {{ this.$store.getters.totalPrice | currency }}</p>
 
           <card
             class="stripe-card"
@@ -34,7 +42,15 @@
             @change="complete = $event.complete"
           />
 
-          <button class="pay-with-stripe btn btn-primary mt-4" @click="pay">Pay with credit card</button>
+          <button class="pay-with-stripe btn btn-primary mt-4" @click="pay">
+            結帳去
+          </button>
+
+          <div class="alert alert-danger ">
+            <div class="container">
+              <span>可以使用4242 4242 4242 4242 進行結帳測試</span>
+            </div>
+          </div>
 
           <!-- </form> -->
         </div>
@@ -50,14 +66,14 @@ var stripe = Stripe("pk_test_C0J113v2HagE5sUkcWFGgZXj000rNKZU4s");
 export default {
   data() {
     return {
-      sessionId: ""
+      sessionId: "",
     };
   },
 
   methods: {
     pay() {
-      let data = this.$store.state.cart.map(item => ({
-        [item.productId]: item.productQuantity
+      let data = this.$store.state.cart.map((item) => ({
+        [item.productId]: item.productQuantity,
       }));
       data = Object.assign({}, ...data);
 
@@ -66,29 +82,27 @@ export default {
           "https://us-central1-vue-shop-65048.cloudfunctions.net/CheckoutSession",
           {
             params: {
-              products: data
-            }
+              products: data,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           this.sessionId = response.data;
           console.log(response.data);
           stripe
             .redirectToCheckout({
-              sessionId: this.sessionId.id
+              sessionId: this.sessionId.id,
             })
             .then(function(result) {});
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
-  created() {}
+  created() {},
 };
 </script>
-
-
 
 <style>
 /**
@@ -122,5 +136,10 @@ export default {
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 } */
+.del {
+  cursor: pointer;
+}
+/* .navbar {
+  background-color: rgb(0, 0, 0);
+} */
 </style>
-
