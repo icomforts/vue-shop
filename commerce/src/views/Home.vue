@@ -7,6 +7,7 @@
     <products-list />
     <login></login>
     <mini-cart></mini-cart>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 // @ is an alias to /src
 import Mid from "@/components/Mid.vue";
 import Mid2 from "@/components/Mid2.vue";
+import Footer from "@/components/Footer.vue";
 // import Products from '@/sections/Products.vue'
 import Login from "@/components/Login.vue";
 

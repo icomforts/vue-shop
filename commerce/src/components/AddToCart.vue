@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    <button class="btn btn-default" @click="addToCart">購物車</button>
+    <button class="btn " @click="addToCart">
+      <i class="fas fa-cart-plus"></i>
+    </button>
   </div>
 </template>
 
@@ -37,4 +39,15 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.btn {
+  background: transparent;
+  padding: 5px 10px;
+  color: rgb(252, 252, 252);
+  margin-left: 10px;
+}
+.btn:hover {
+  background: grey;
+  color: white;
+}
+</style>

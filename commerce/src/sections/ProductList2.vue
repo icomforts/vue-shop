@@ -3,39 +3,40 @@
     <div class="container">
       <h1 class="text-center p-5">THE STORIES</h1>
       <div class="row">
-        <div class="col-sm-6 col-md-3 p" v-for="product in products">
-              <h4 class="images-title">{{product.name}}</h4>
-              <carousel
+        <div class="col-md-4" v-for="product in products">
+          <div class="card product-item">
+            <carousel
               :perPage="1"
               :autoplay="true"
               :loop="true"
               :paginationEnabled="false"
-              >
-            
+            >
               <slide v-for="(image, index) in product.images">
                 <img
                   :src="image"
-                  class="img-rounded img-responsive"
+                  class="card-img-top"
+                  alt="..."
                   width="250px"
-                  height="200px"
+                  height="300px"
                 />
               </slide>
             </carousel>
-              <div class="img-details">
-                
-                <div class="info">
-                <h5>{{product.name}}
-                {{product.price | currency}}</h5>
-                </div>
-                <add-to-cart
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h5 class="card-prices">{{ product.price | currency }}</h5>
+              </div>
+
+              <add-to-cart
                 :image="getImage(product.images)"
                 :p-id="product.id"
                 :price="product.price"
                 :name="product.name"
               >
               </add-to-cart>
-              </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
@@ -74,43 +75,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .products {
-  background-color: #000000ce;
-  //  background: url("https://traversymedia.com/downloads/cover.jpg") no-repeat
-  //   center center/cover;
+  // margin-top: 7rem;
+  background-color: #edecec;
   padding-bottom: 3rem;
-  color: aliceblue;
 }
 h1 {
   margin-top: 0;
 }
-.img-details{
-  display:none;
-  
-  align-items: center;
-  .author{
-
-    z-index: 99;
-  }
-}
-.info{
-  margin-top: 10px;
-  
-  // background: rgb(255, 255, 255);
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  display: block;
-  
-  
-}
-.p:hover{
-  .img-details{
-   
-    display: flex;
-  }
-}
-@keyframes fade{
-  100%{
-    opacity: 1;
-  }
-};
 </style>

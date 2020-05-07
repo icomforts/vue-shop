@@ -72,16 +72,10 @@ export default {
     ////滾輪桌布
     var transparent = true;
     $(window).scroll(function() {
-      if ($(window).scrollTop() > $(".navbar").attr("color-on-scroll")) {
-        if (transparent) {
-          transparent = false;
-          $(".navbar[color-on-scroll]").removeClass("navbar-transparent");
-        }
+      if ($(window).scrollTop() > $(".mid").height()) {
+        $(".navbar").fadeIn();
       } else {
-        if (!transparent) {
-          transparent = true;
-          $(".navbar[color-on-scroll]").addClass("navbar-transparent");
-        }
+        $(".navbar").fadeOut();
       }
     });
   },
@@ -95,7 +89,7 @@ export default {
   font-family: "Open Sans";
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
-  --bg-primary: #23232e;
+  --bg-primary: #0000ff;
   --bg-secondary: #141418;
   --transition-speed: 600ms;
 }
@@ -105,6 +99,9 @@ export default {
   background-color: var(--bg-primary);
   transition: width 600ms ease;
   overflow: hidden;
+  z-index: 99;
+  display: none;
+  // opacity: 0;
 }
 
 .navbar-nav {
@@ -193,36 +190,36 @@ export default {
 
 /* Small screens */
 @media only screen and (max-width: 1024px) {
-  .navbar {
-    bottom: 0;
-    width: 100vw;
-    height: 3rem;
-    background: gray;
-    display: flex;
-  }
+  // .navbar {
+  //   bottom: 0;
+  //   width: 100vw;
+  //   height: 3rem;
+  //   background: gray;
+  //   display: flex;
+  // }
 
-  .logo {
-    display: none;
-  }
+  // .logo {
+  //   display: none;
+  // }
 
-  .navbar-nav {
-    width: 100%;
-    flex-direction: row;
-    justify-content: center;
-    display: flex;
-    position: fixed;
-  }
+  // .navbar-nav {
+  //   width: 100%;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   display: flex;
+  //   position: fixed;
+  // }
 
-  .nav-link {
-    justify-content: center;
-  }
-  .nav-link i {
-    color: white;
-  }
+  // .nav-link {
+  //   justify-content: center;
+  // }
+  // .nav-link i {
+  //   color: white;
+  // }
 
-  main {
-    margin: 0;
-  }
+  // main {
+  //   margin: 0;
+  // }
 }
 
 /* Large screens */
@@ -230,7 +227,7 @@ export default {
   .navbar {
     top: 0;
     width: 5rem;
-    height: 100vh;
+    // height: 100vh;
   }
 
   .navbar:hover {

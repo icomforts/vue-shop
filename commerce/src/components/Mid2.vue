@@ -36,10 +36,11 @@ export default {
 }
 .container {
   display: flex;
+  color: whitesmoke;
 }
 
 .woven-tagline {
-  background: whitesmoke;
+  background: linear-gradient(#000000, #000000ce);
   padding: 75px 0;
   z-index: 5;
 }

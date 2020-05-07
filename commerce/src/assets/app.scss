@@ -8,6 +8,7 @@
 }
 
 * {
+  box-sizing: border-box;
   font-family: "TaipeiSansTC" !important;
 }
 
@@ -22,7 +23,7 @@ i {
   padding: 0.5rem 2.5rem;
 }
 
-body {
+html {
   scroll-behavior: smooth;
 }
 

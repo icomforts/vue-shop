@@ -47,6 +47,7 @@ Vue.component("Navbar2", require("./components/Navbar2.vue").default);
 Vue.component("add-to-cart", require("./components/AddToCart.vue").default);
 Vue.component("mini-cart", require("./components/MiniCart.vue").default);
 Vue.component("Mid2", require("./components/Mid2.vue").default);
+Vue.component("Footer", require("./components/Footer.vue").default);
 
 Vue.component("products-list", require("./sections/ProductList.vue").default);
 
