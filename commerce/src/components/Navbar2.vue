@@ -100,6 +100,9 @@ export default {
   --transition-speed: 600ms;
 }
 
+.hello{
+  opacity: 0;
+}
 .navbar {
   position: fixed;
   background-color: var(--bg-primary);
