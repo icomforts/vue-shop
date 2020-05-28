@@ -1,26 +1,19 @@
-@import "~bootstrap/scss/bootstrap";
-@import "~paper-kit-2/assets/sass/paper-kit.scss";
-@import "./admin.scss";
-
 @font-face {
   font-family: TaipeiSansTC;
   src: url(/fonts/TaipeiSansTCBeta-Regular.ttf);
+}
+
+@font-face {
+  font-family: homefont;
+  src: url(/fonts/Timberline.ttf);
 }
 
 * {
   box-sizing: border-box;
   font-family: "TaipeiSansTC" !important;
 }
-
 i {
-  font-family: "Font Awesome 5 Free" !important;
-}
-.form-control {
-  font-family: sans-serif;
-}
-.custom-btn {
-  // border-radius: 10rem;
-  padding: 0.5rem 2.5rem;
+  font-family: "Icons" !important;
 }
 
 html {

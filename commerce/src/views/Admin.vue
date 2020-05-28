@@ -1,120 +1,373 @@
 <template>
   <div class="admin">
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
-      <a
-        id="show-sidebar"
-        @click="closeMenu"
-        class="btn btn-sm btn-dark"
-        href="#"
-      >
-        <i class="fas fa-bars"></i>
+    <div class="ts left vertical fluid inverted visible menu sidebar">
+      <!-- 搜尋欄位 -->
+      <div class="fitted item">
+        <div class="ts icon fluid basic borderless inverted input">
+          <input type="text" placeholder="搜尋" />
+          <i class="search inverted link icon"></i>
+        </div>
+      </div>
+      <!-- / 搜尋欄位 -->
+
+      <!-- 個人資料項目 -->
+      <div class="center aligned item">
+        <img class="ts tiny circular image" src="" />
+        <br />
+        <br />
+        <div>Yami Odymel</div>
+      </div>
+      <!-- / 個人資料項目 -->
+
+      <!-- 使用者管理 -->
+      <div class="item">
+        <i class="users icon"></i>
+        使用者管理
+        <div class="ts label">23</div>
+        <div class="menu">
+          <a class="item">搜尋</a>
+          <a class="item">新增</a>
+          <a class="item">移除</a>
+        </div>
+      </div>
+      <!-- / 使用者管理 -->
+
+      <!-- 網站管理 -->
+      <div class="item">
+        <i class="setting icon"></i>
+        網站管理
+        <div class="menu">
+          <a class="item">偏好設定</a>
+          <a class="item">系統優化</a>
+          <a class="item">安全防護</a>
+        </div>
+      </div>
+      <!-- / 網站管理 -->
+
+      <!-- 管理文章 -->
+      <a href="#!" class="item">
+        <i class="newspaper icon"></i>
+        管理文章
       </a>
-      <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-content">
-          <!-- sidebar-brand  -->
-          <div class="sidebar-item sidebar-brand">
-            <router-link to="/">
-              <a href="#">五月花商店</a>
-            </router-link>
-            <div id="close-sidebar" @click="closeMenu">
-              <i class="fas fa-times"></i>
-            </div>
+      <!-- / 管理文章 -->
+
+      <!-- 回報處理 -->
+      <a href="#!" class="item">
+        <i class="flag icon"></i>
+        回報處理
+      </a>
+      <!-- / 回報處理 -->
+
+      <!-- 底部選單 -->
+      <div class="bottom menu">
+        <!-- 登出 -->
+        <a href="#!" class="item" @click="logout()">
+          <i class="sign out icon"></i>
+          登出
+        </a>
+        <!-- / 登出 -->
+      </div>
+      <!-- / 底部選單 -->
+    </div>
+    <!-- / 左側邊欄 -->
+
+    <!-- 可擠壓式的推動容器 -->
+    <div class="squeezable pusher">
+      <br />
+
+      <!-- 主要容器 -->
+      <div class="ts narrow container">
+        <div class="ts relaxed grid">
+          <!-- 標題欄位 -->
+          <div class="sixteen wide column">
+            <h3 class="ts header">
+              儀表板
+              <div class="sub header">從這裡快速檢視您的網站狀態。</div>
+            </h3>
           </div>
-          <!-- sidebar-header  -->
-          <div class="sidebar-item sidebar-header">
-            <div class="user-pic">
-              <img
-                class="img-responsive img-rounded"
-                src="/img/user.png"
-                alt="User picture"
-              />
+          <!-- / 標題欄位 -->
+
+          <!-- 大略卡片欄位 -->
+          <div class="sixteen wide column">
+            <div class="ts three cards">
+              <!-- 本月拜訪次數 -->
+              <div class="ts card">
+                <div class="content">
+                  <!-- 統計數據 -->
+                  <div class="ts left aligned statistic">
+                    <div class="value">
+                      42,689
+                      <div class="increment">32</div>
+                    </div>
+                    <div class="label">本月拜訪次數</div>
+                  </div>
+                  <!-- / 統計數據 -->
+                </div>
+                <div class="symbol">
+                  <i class="eye icon"></i>
+                </div>
+              </div>
+              <!-- / 本月拜訪次數 -->
+
+              <!-- 總會員數 -->
+              <div class="ts card">
+                <div class="content">
+                  <!-- 統計數據 -->
+                  <div class="ts left aligned statistic">
+                    <div class="value">
+                      8,652
+                      <div class="increment">351</div>
+                    </div>
+                    <div class="label">總會員數</div>
+                  </div>
+                  <!-- / 統計數據 -->
+                </div>
+                <div class="symbol">
+                  <i class="users icon"></i>
+                </div>
+              </div>
+              <!-- / 總會員數 -->
+
+              <!-- 平均在線分鐘數 -->
+              <div class="ts card">
+                <div class="content">
+                  <!-- 統計數據 -->
+                  <div class="ts left aligned statistic">
+                    <div class="value">
+                      3
+                      <div class="decrement">14</div>
+                    </div>
+                    <div class="label">平均在線分鐘數</div>
+                  </div>
+                  <!-- / 統計數據 -->
+                </div>
+                <div class="symbol">
+                  <i class="time icon"></i>
+                </div>
+              </div>
+              <!-- / 平均在線分鐘數 -->
             </div>
-            <div class="user-info">
-              <span class="user-name">
-                <strong>{{ name }}</strong>
-              </span>
-              <span class="user-role">{{ email }}</span>
-              <span class="user-status">
-                <i class="fa fa-circle"></i>
-                <span>Online</span>
-              </span>
-            </div>
+
+            <!-- 區隔線 -->
+            <div class="ts section divider"></div>
+            <!-- / 區隔線 -->
           </div>
-          <!-- sidebar-search  -->
-          <div class="sidebar-item sidebar-search">
-            <div>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control search-menu"
-                  placeholder="搜尋..."
-                />
-                <div class="input-group-append">
-                  <span class="input-group-text">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </span>
+          <!-- / 大略卡片欄位 -->
+
+          <!-- 左側雜項欄位 -->
+          <div class="ten wide column">
+            <div class="ts top attached info segment">
+              <div class="ts large header">最新會員清單</div>
+            </div>
+            <div class="ts attached segment">
+              <table class="ts very basic table">
+                <thead>
+                  <tr>
+                    <th>使用者名稱</th>
+                    <th>電子郵件信箱</th>
+                    <th>生日</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="disabled">
+                    <td>yamiodymel</td>
+                    <td><em>(此帳號已被刪除)</em></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>mac0017817</td>
+                    <td>mac0017817@gahoo.io</td>
+                    <td>1998/07/13</td>
+                  </tr>
+                  <tr>
+                    <td>shiroteacat</td>
+                    <td>shiroteacat@karator.com</td>
+                    <td>2000/09/14</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="ts bottom attached right aligned segment">
+              <div class="ts small buttons">
+                <div class="ts icon button">
+                  <i class="left arrow icon"></i>
+                </div>
+                <div class="ts button">
+                  1
+                </div>
+                <div class="ts button">
+                  2
+                </div>
+                <div class="ts button">
+                  ...
+                </div>
+                <div class="ts button">
+                  7
+                </div>
+                <div class="ts button">
+                  8
+                </div>
+                <div class="ts button">
+                  9
+                </div>
+                <div class="ts icon button">
+                  <i class="right arrow icon"></i>
                 </div>
               </div>
             </div>
+            <div class="ts top attached info segment">
+              <div class="ts large header">
+                管理員留言板
+                <span class="ts right floated horizontal warning label"
+                  >2 則新留言</span
+                >
+              </div>
+            </div>
+            <div class="ts attached segment">
+              <div class="ts speeches">
+                <div class="left pointing speech">
+                  <div class="avatar">
+                    <img src="" />
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      記得友善發言！
+                    </div>
+                    <div class="meta">
+                      <div class="item">12:33 PM</div>
+                      <div class="item">已讀</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="left pointing speech">
+                  <div class="avatar">
+                    <img src="" />
+                  </div>
+                  <div class="content">
+                    <div class="description">
+                      才不管逆雷～
+                    </div>
+                    <div class="meta">
+                      <div class="item">12:33 PM</div>
+                      <div class="item">已讀</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="right pointing speech">
+                  <div class="content">
+                    <div class="description">
+                      勒～
+                    </div>
+                    <div class="meta">
+                      <div class="item">12:33 PM</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ts bottom attached fitted segment">
+              <div class="ts fluid borderless input">
+                <input type="text" placeholder="輸入留言⋯⋯" />
+              </div>
+            </div>
           </div>
-          <!-- sidebar-menu  -->
-          <div class="sidebar-item sidebar-menu">
-            <ul>
-              <li class="header-menu">
-                <span>Menu</span>
-              </li>
+          <!-- / 左側雜項欄位 -->
 
-              <li>
-                <router-link to="/admin/overview">
-                  <i class="fa fa-chart-line"></i>
-                  <span>銷售圖表</span>
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/admin/products">
-                  <i class="fas fa-archive"></i>
-                  <span>產品</span>
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/admin/orders">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>訂單</span>
-                </router-link>
-              </li>
+          <!-- 右側雜項欄位 -->
+          <div class="six wide column">
+            <!-- 系統佇列 -->
+            <div class="ts top attached info segment">
+              <div class="ts large header">系統佇列</div>
+            </div>
+            <div class="ts bottom attached segment">
+              <!-- 清理資料庫 -->
+              <div class="ts header">清理資料庫</div>
+              <!-- 進度列 -->
+              <div class="ts small active primary progress">
+                <div class="bar" style="width: 30%">
+                  <div class="text">30%</div>
+                </div>
+              </div>
+              <!-- / 進度列 -->
+              <!-- / 清理資料庫 -->
 
-              <li>
-                <router-link to="/admin/profile">
-                  <i class="fa fa-user"></i>
-                  <span>個人資料</span>
-                </router-link>
-              </li>
-              <li>
-                <a href="#" @click="logout()">
-                  <i class="fa fa-power-off"></i>
-                  <span>登出</span>
-                </a>
-              </li>
-            </ul>
+              <!-- 清理快取 -->
+              <div class="ts header">清理快取</div>
+              <!-- 進度列 -->
+              <div class="ts small preparing progress">
+                <div class="bar" style="width: 30%"></div>
+              </div>
+              <!-- / 進度列 -->
+              <!-- 清理快取 -->
+
+              <!-- 整理遠端倉庫 -->
+              <div class="ts header">整理遠端倉庫</div>
+              <!-- 進度列 -->
+              <div class="ts small indeterminate progress">
+                <div class="bar" style="width: 30%"></div>
+              </div>
+              <!-- / 進度列 -->
+              <!-- / 整理遠端倉庫 -->
+            </div>
+            <!-- / 系統佇列 -->
+
+            <!-- 最新上架產品 -->
+            <div class="ts top attached info segment">
+              <div class="ts large header">最新上架產品</div>
+            </div>
+            <div class="ts attached segment">
+              <div class="ts single line items">
+                <!-- 單個項目 -->
+                <div class="item">
+                  <div class="ts tiny image">
+                    <img src="" />
+                  </div>
+                  <div class="content">
+                    <a class="header">吻仔魚</a>
+                    <div class="description">
+                      一般可分為淡水魚魩仔魚與海水魚魩仔魚兩類。
+                      根據臺灣大學王友慈博士指出，魩仔魚是單一種魚類，
+                      是沙丁魚苗，若撈捕作業不正確有可能撈到數十至一百五十種類的魚苗。
+                    </div>
+                  </div>
+                </div>
+                <!-- / 單個項目 -->
+
+                <!-- 單個項目 -->
+                <div class="item">
+                  <div class="ts tiny image">
+                    <img src="" />
+                  </div>
+                  <div class="content">
+                    <a class="header">芒果</a>
+                    <div class="description">
+                      是芒果屬的一種植物和果實，原產自北印度和馬來半島，
+                      在梵語中叫作āmra，音譯為「菴羅」，或叫作āmalaka，
+                      音譯為「菴摩勒」、「菴摩羅」、「阿摩落伽」。
+                    </div>
+                  </div>
+                </div>
+                <!-- / 單個項目 -->
+              </div>
+            </div>
+            <button class="ts bottom attached fluid button">檢視更多</button>
+            <!-- / 最新上架產品 -->
           </div>
-          <!-- sidebar-menu  -->
+          <!-- / 右側雜項欄位 -->
         </div>
-      </nav>
-      <!-- sidebar-content  -->
-      <main class="page-content">
-        <router-view />
-      </main>
-      <!-- page-content" -->
+      </div>
+      <!-- / 主要容器 -->
+
+      <br />
     </div>
-    <!-- page-wrapper -->
+    <!-- / 可擠壓式的推動容器 -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Mid from "@/components/Mid.vue";
-import { fb } from "../firebase";
 
+import { fb, db } from "../firebase";
 export default {
   name: "admin",
   data() {
@@ -123,22 +376,17 @@ export default {
       email: null,
     };
   },
-  components: {
-    Mid,
-  },
   methods: {
-    closeMenu() {
-      $(".page-wrapper").toggleClass("toggled");
-    },
     logout() {
-      fb.auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // fb.auth()
+      //   .signOut()
+      //   .then(() => {
+      //     this.$router.replace("/");
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      console.log(db);
     },
   },
 

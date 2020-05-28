@@ -1,50 +1,51 @@
 <template>
   <div class="mid">
-    <!-- <div
-      class="page-header"
-      data-parallax="true"
-      style="background-image: url('/img/封面2.jpg'); "
-    >
-      <div class="filter"></div>
-      <div class="content-center">
-        <div class="container">
-          <div class="motto text-center">
-            <h1 class="presentation-title">發生市集</h1>
-            <div class="fog-low"></div>
-            <div class="fog-low right"></div>
-          </div>
-          <h2 class="motto presentation-subtitle text-center">
-            在這裡您能找到心儀的商品
-          </h2>
-        </div>
+    <div class="hero ">
+      <img
+        src="https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?cs=srgb&dl=pexels-264547.jpg&fm=jpg"
+        alt=""
+      />
+      <div class="headline unstyled">
+        <h1>The</h1>
+        <h1>shoP</h1>
       </div>
-    </div> -->
-    <div class="homepage">
-      <iframe
-        class="v1"
-        allow="autoplay"
-        frameborder="0"
-        src="https://player.vimeo.com/video/349563345?background=1"
-      >
-      </iframe>
+      <div class="downarrow">
+        <a href="#products" class="unstyled">
+          <svg
+            class="unstyled"
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="-20 0 550 500"
+            style="enable-background:new 0 0 490.656 490.656;"
+            xml:space="preserve"
+          >
+            <g>
+              <g>
+                <path
+                  d="M487.536,216.467c-4.16-4.16-10.923-4.16-15.083,0L245.339,443.581L18.203,216.467c-4.16-4.16-10.923-4.16-15.083,0
+			c-4.16,4.16-4.16,10.923,0,15.083l234.667,234.667c2.091,2.069,4.821,3.115,7.552,3.115s5.461-1.045,7.531-3.115l234.667-234.667
+			C491.696,227.389,491.696,220.627,487.536,216.467z"
+                />
+              </g>
+            </g>
+            <g>
+              <g>
+                <path
+                  d="M487.536,24.445c-4.16-4.16-10.923-4.16-15.083,0L245.339,251.581L18.203,24.467c-4.16-4.16-10.923-4.16-15.083,0
+			c-4.16,4.16-4.16,10.923,0,15.083l234.667,234.667c2.091,2.069,4.821,3.115,7.552,3.115s5.461-1.045,7.531-3.136L487.536,39.528
+			C491.696,35.368,491.696,28.605,487.536,24.445z"
+                />
+              </g>
+            </g>
+          </svg>
+        </a>
+      </div>
     </div>
-    <div class="showcase">
-      <div class="video-container">
-        <video
-          src="https://traversymedia.com/downloads/video.mov"
-          autoplay
-          muted
-          loop
-        ></video>
-      </div>
-      <div class="content" id="content">
-        <h1>發生市集</h1>
-        <h3>在這裡您能找到心儀的商品</h3>
-      </div>
-      <a href="#about" class="btn homebtn" id="homebtn"
-        ><i class="fas fa-home"></i
-      ></a>
-    </div>
+    <div class="slider"></div>
   </div>
 </template>
 
@@ -58,25 +59,40 @@ export default {
     $(window).scroll(function() {
       let a = $(window).scrollTop();
       let b = parseInt($(".mid").css("height"));
-      $(".page-header").css(
+      $(".hello").css(
         "opacity",
-        1 - $(window).scrollTop() / parseInt($(".mid").css("height"))
+        $(window).scrollTop() / parseInt($(".mid").css("height"))
       );
     });
-    $(".homebtn").hover(
-      function() {
-        $("#content").addClass("move");
-        $("#content").fadeOut();
-        $("#content").css("z-index", "99");
-        $(".v1").fadeIn();
-      },
-      function() {
-        $(".v1").fadeOut();
-        $("#content").fadeIn();
-        $("#content").removeClass("move");
-        $("#content").css("z-index", "99");
-      }
-    );
+    const t1 = new TimelineMax();
+    t1.fromTo(
+      $(".hero"),
+      { height: "0%" },
+      { height: "100%", duration: 1, ease: "power2.inout" }
+    )
+      .fromTo(
+        $(".hero"),
+        { width: "80%" },
+        { width: "100%", duration: 1.2, ease: "power2.inout" }
+      )
+      .fromTo(
+        $(".slider"),
+        { x: "-100%" },
+        { x: "0%", duration: 1.2, ease: "power2.inout" },
+        "-=1.2"
+      )
+      .fromTo(
+        $(".headline"),
+        { opacity: 0, x: 30 },
+        { opacity: 1, x: 0, duration: 0.5, ease: "power2.inout" },
+        "-=0.5"
+      )
+      .fromTo(
+        $(".downarrow"),
+        { opacity: 0, x: 30 },
+        { opacity: 1, x: 0, duration: 0.5, ease: "power2.inout" },
+        "-=0.5"
+      );
   },
 };
 </script>
@@ -84,128 +100,117 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .mid {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-.page-header .content-center {
-  margin-top: 0;
-}
-
-.homepage {
-  width: 80%;
-  height: 80%;
-  z-index: 1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  .v1 {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -55%);
-    height: 100%;
-    width: 100%;
-  }
-}
-
-h1 {
-  font-weight: 300;
-  font-size: 60px;
-  line-height: 1.2;
-  margin-bottom: 15px;
-}
-
-.showcase {
-  height: 100vh;
   display: flex;
-  align-items: center;
+  height: 100vh;
   justify-content: center;
-  text-align: center;
-  color: #fff;
-  // padding: 0 20px;
+  align-items: center;
+}
+.hero {
   position: relative;
 }
-
-.video-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.hero img {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-
-  background: var(--primary-color)
-    url("https://traversymedia.com/downloads/cover.jpg") no-repeat center
-    center/cover;
-}
-
-.video-container video {
-  width: 100%;
-  height: 100%;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
   object-fit: cover;
+  opacity: 0.1;
 }
-
-.video-container:after {
-  content: "";
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
+.hero .downarrow {
   position: absolute;
-}
-
-.content {
-  z-index: 99;
-  writing-mode: vertical-tb;
-}
-.move {
-  animation: moveup 2s forwards;
-}
-.homebtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  height: 5rem;
-  width: 5rem;
-}
-
-.btn {
-  position: absolute;
-  top: 70%;
+  width: 100px;
+  top: 90%;
   left: 50%;
   transform: translate(-50%, -70%);
-  padding: 10px 3px;
-  background: var(--primary-color);
-  color: #fff;
-  z-index: 2;
-  border: solid #fff 1px;
-  border-radius: 5px;
-  margin-top: 10px;
-  opacity: 0.7;
-  writing-mode: horizontal-tb;
-}
-
-@keyframes moveup {
-  100% {
-    transform: translate(0, -150%);
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  svg {
+    width: 100px;
+    height: 100px;
   }
 }
 
-@media screen and (max-width: 1024px) {
-  .homebtn {
-    display: none;
+.hero .downarrow svg path {
+  fill: transparent;
+  stroke-width: 10;
+  stroke: rgb(255, 255, 255);
+  stroke-dasharray: 1560;
+  stroke-dashoffset: 1560;
+  animation: icon 3s linear infinite;
+}
+
+@keyframes icon {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  40% {
+    stroke-dashoffset: 1560;
+  }
+  80% {
+    stroke-dashoffset: 3120;
+  }
+  100% {
+    stroke-dashoffset: 3120;
+    fill: white;
+  }
+}
+
+.headline {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -60%) !important;
+  z-index: 3;
+  h1 {
+    font-size: 160px;
+    color: white;
+    font-family: "homefont" !important;
+  }
+}
+.hero::after {
+  content: "";
+  background: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0.3;
+  top: 0;
+  pointer-events: none;
+}
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgb(54, 39, 39);
+  z-index: -1;
+}
+@media screen and(min-width: 1441px) {
+  .headline {
+    h1 {
+      font-size: 250px;
+    }
+    top: 40%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .headline {
+    h1 {
+      font-size: 145px;
+    }
+  }
+}
+@media only screen and (max-width: 767px) {
+  .headline {
+    h1 {
+      font-size: 64px;
+    }
+  }
+  .hero {
+    .downarrow {
+      top: 60%;
+    }
   }
 }
 </style>

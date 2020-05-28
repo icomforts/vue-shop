@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <button class="btn " @click="addToCart">
-      <i class="fas fa-cart-plus"></i>
+      <h1>放入購物車</h1>
     </button>
   </div>
 </template>
@@ -41,13 +41,27 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .btn {
-  background: transparent;
+  margin-top: 10px;
   padding: 5px 10px;
   color: rgb(252, 252, 252);
-  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px -5px #00000070;
+  border: solid 1px white;
+  border-radius: 15px;
+  transition: all 0.2s linear;
+
+  h1 {
+    color: rgb(0, 113, 227);
+    transition: all 0.2s linear;
+  }
 }
 .btn:hover {
-  background: grey;
-  color: white;
+  background: rgb(0, 113, 227);
+  border: none;
+  transform: scale(1.1);
+
+  h1 {
+    color: rgb(255, 255, 255);
+  }
 }
 </style>

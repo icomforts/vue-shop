@@ -66,7 +66,7 @@ exports.CheckoutSession = functions.https.onRequest((request, response) => {
     stripe.checkout.sessions.create(
       {
         success_url: "https://vue-shop-65048.web.app/",
-        cancel_url: "https://vue-shop-65048.web.app/checkout",
+        cancel_url: "https://vue-shop-65048.web.app/",
         payment_method_types: ["card"],
         line_items: results,
       },

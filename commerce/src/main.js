@@ -4,12 +4,12 @@ import router from "./router";
 import jQuery from "jquery";
 import { fb } from "./firebase";
 import VueFirestore from "vue-firestore";
-import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+// import BootstrapVue from "bootstrap-vue";
+// import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap-vue/dist/bootstrap-vue.css";
 
 require("firebase/firestore");
-Vue.use(BootstrapVue);
+// Vue.use(BootstrapVue);
 Vue.config.productionTip = false;
 
 Vue.use(VueFirestore, {
@@ -24,8 +24,8 @@ Vue.use(VueFilters);
 
 window.$ = window.jQuery = jQuery;
 import "popper.js";
-import "bootstrap";
-import "jquery.nicescroll";
+// import "bootstrap";
+// import "jquery.nicescroll";
 import "./assets/app.scss";
 
 import Swal from "sweetalert2";
@@ -42,13 +42,10 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 import store from "./store.js";
 
-// Vue.component("Navbar", require("./components/Navbar.vue").default);
-Vue.component("Navbar2", require("./components/Navbar2.vue").default);
+Vue.component("Navbar", require("./components/Navbar.vue").default);
 Vue.component("add-to-cart", require("./components/AddToCart.vue").default);
 Vue.component("mini-cart", require("./components/MiniCart.vue").default);
-Vue.component("Mid2", require("./components/Mid2.vue").default);
 Vue.component("Footer", require("./components/Footer.vue").default);
-
 Vue.component("products-list", require("./sections/ProductList.vue").default);
 
 import VueCarousel from "vue-carousel";

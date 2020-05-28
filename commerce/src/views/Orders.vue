@@ -8,7 +8,7 @@
             <p>在這裡，您可以管理目前訂單狀況。</p>
           </div>
           <div class="col-md-6">
-            <img src="/img/svg/orders.svg" alt class="img-fluid" />
+            <img src="/img/svg/orders.svg" class="img-fluid" />
           </div>
         </div>
       </div>

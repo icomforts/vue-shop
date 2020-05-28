@@ -49,20 +49,6 @@ const router = new Router({
         },
       ],
     },
-    {
-      path: "/checkout",
-      name: "checkout",
-
-      component: () =>
-        import(/* webpackChunkName: "about" */ "../views/Checkout.vue"),
-    },
-    {
-      path: "/about",
-      name: "about",
-
-      component: () =>
-        import(/* webpackChunkName: "about" */ "../views/About.vue"),
-    },
   ],
 });
 

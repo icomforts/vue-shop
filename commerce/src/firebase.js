@@ -1,7 +1,7 @@
-import firebase from 'firebase';
-import 'firebase/firestore';
-import 'firebase/firebase-auth';
-import 'firebase/storage';
+import firebase from "firebase";
+import "firebase/firestore";
+import "firebase/firebase-auth";
+import "firebase/storage";
 
 var firebaseConfig = {
   apiKey: "AIzaSyCATZiZROZGJ_WoNfcekTKMtek8aMGVrs0",
@@ -11,16 +11,10 @@ var firebaseConfig = {
   storageBucket: "vue-shop-65048.appspot.com",
   messagingSenderId: "401934269274",
   appId: "1:401934269274:web:6d3d9f7f42ee4992bb5163",
-  measurementId: "G-E3F1LECNMY"
+  measurementId: "G-E3F1LECNMY",
 };
 // Initialize Firebase
 const fb = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 firebase.analytics();
-export {
-  fb,
-  db
-}
-
-
-
+export { fb, db };

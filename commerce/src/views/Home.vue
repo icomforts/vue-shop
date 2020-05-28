@@ -1,11 +1,10 @@
 <template>
   <div class="home">
-    <div class="scrollbar"><div class="scrollbar-thumb"></div></div>
-    <Navbar2></Navbar2>
+    <Navbar></Navbar>
     <Mid />
-    <Mid2 />
     <products-list />
     <login></login>
+    <contact></contact>
     <mini-cart></mini-cart>
     <Footer></Footer>
   </div>
@@ -14,9 +13,8 @@
 <script>
 // @ is an alias to /src
 import Mid from "@/components/Mid.vue";
-import Mid2 from "@/components/Mid2.vue";
 import Footer from "@/components/Footer.vue";
-// import Products from '@/sections/Products.vue'
+import Contact from "@/components/Contact.vue";
 import Login from "@/components/Login.vue";
 
 export default {
@@ -24,10 +22,9 @@ export default {
   components: {
     Mid,
     Login,
+    Contact,
   },
-  mounted: function() {
-    // $("body").niceScroll(); //scrollbar
-  },
+  mounted: function() {},
 };
 </script>
 

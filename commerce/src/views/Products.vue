@@ -15,7 +15,9 @@
 
       <div class="product-test">
         <h3 class="d-inline-block">產品列表</h3>
-        <button @click="addNew" class="btn btn-primary float-right">新增產品</button>
+        <button @click="addNew" class="btn btn-primary float-right">
+          新增產品
+        </button>
 
         <div class="table-responsive">
           <table class="table">
@@ -32,8 +34,15 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                  <button class="btn btn-primary" @click="editProduct(product)">修改</button>
-                  <button class="btn btn-danger" @click="deleteProduct(product)">刪除</button>
+                  <button class="btn btn-primary" @click="editProduct(product)">
+                    修改
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    @click="deleteProduct(product)"
+                  >
+                    刪除
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -55,7 +64,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="editLabel">編輯產品</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -64,11 +78,22 @@
               <!-- main product -->
               <div class="col-md-8">
                 <div class="form-group">
-                  <input type="text" placeholder="產品名稱" v-model="product.name" class="form-control" />
+                  <input
+                    type="text"
+                    placeholder="產品名稱"
+                    v-model="product.name"
+                    class="form-control"
+                  />
                 </div>
 
                 <div class="form-group">
-                  <vue-editor v-model="product.description"></vue-editor>
+                  <input
+                    type="text"
+                    placeholder="產品簡介"
+                    v-model="product.description"
+                    class="form-control"
+                    style="height:168px"
+                  />
                 </div>
               </div>
               <!-- product sidebar -->
@@ -103,14 +128,22 @@
 
                 <div class="form-group">
                   <label for="product_image">產品圖</label>
-                  <input type="file" @change="uploadImage" class="form-control" />
+                  <input
+                    type="file"
+                    @change="uploadImage"
+                    class="form-control"
+                  />
                 </div>
 
                 <div class="form-group d-flex">
                   <div class="p-1" v-for="(image, index) in product.images">
                     <div class="img-wrapp">
                       <img :src="image" alt width="80px" />
-                      <span class="delete-img" @click="deleteImage(image, index)">X</span>
+                      <span
+                        class="delete-img"
+                        @click="deleteImage(image, index)"
+                        >X</span
+                      >
                     </div>
                   </div>
                 </div>
@@ -122,15 +155,25 @@
               @click="addProduct()"
               type="button"
               class="btn btn-primary"
-              v-if="modal=='new'"
-            >新增</button>
+              v-if="modal == 'new'"
+            >
+              新增
+            </button>
             <button
               @click="updateProduct()"
               type="button"
               class="btn btn-primary"
-              v-if="modal=='edit'"
-            >保存</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+              v-if="modal == 'edit'"
+            >
+              保存
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              關閉
+            </button>
           </div>
         </div>
       </div>
@@ -145,10 +188,10 @@ import { fb, db } from "../firebase";
 export default {
   name: "Products",
   components: {
-    VueEditor
+    VueEditor,
   },
   props: {
-    msg: String
+    msg: String,
   },
 
   data() {
@@ -159,17 +202,17 @@ export default {
         description: null,
         price: null,
         tags: [],
-        images: []
+        images: [],
       },
       activeItem: null,
       modal: null,
-      tag: null
+      tag: null,
     };
   },
 
   firestore() {
     return {
-      products: db.collection("products")
+      products: db.collection("products"),
     };
   },
   methods: {
@@ -204,15 +247,15 @@ export default {
 
         uploadTask.on(
           "state_changed",
-          snapshot => {},
-          error => {
+          (snapshot) => {},
+          (error) => {
             // Handle unsuccessful uploads
           },
           () => {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
 
-            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
               this.product.images.push(downloadURL);
             });
           }
@@ -225,7 +268,7 @@ export default {
         description: null,
         price: null,
         tags: [],
-        images: []
+        images: [],
       };
     },
 
@@ -238,7 +281,7 @@ export default {
       this.$firestore.products.doc(this.product.id).update(this.product);
       Toast.fire({
         icon: "success",
-        title: "保存成功"
+        title: "保存成功",
       });
 
       $("#product").modal("hide");
@@ -257,15 +300,15 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes"
-      }).then(result => {
+        confirmButtonText: "Yes",
+      }).then((result) => {
         if (result.value) {
           this.$firestore.products.doc(doc.id).delete();
 
           Toast.fire({
-            icon:"success",
+            icon: "success",
             type: "success",
-            title: "刪除成功"
+            title: "刪除成功",
           });
         }
       });
@@ -276,12 +319,12 @@ export default {
       Toast.fire({
         icon: "success",
         type: "success",
-        title: "新增成功"
+        title: "新增成功",
       });
       $("#product").modal("hide");
-    }
+    },
   },
-  created() {}
+  created() {},
 };
 </script>
 //
