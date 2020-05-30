@@ -1,57 +1,5 @@
 <template>
   <div class="products">
-    <div class="container h-100">
-      <div class="intro h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-          <div class="col-md-6">
-            <h3>產品頁面</h3>
-            <p>在這裡，您可以管理您的商品。</p>
-          </div>
-          <div class="col-md-6">
-            <img src="/img/svg/products.svg" alt class="img-fluid" />
-          </div>
-        </div>
-      </div>
-
-      <div class="product-test">
-        <h3 class="d-inline-block">產品列表</h3>
-        <button @click="addNew" class="btn btn-primary float-right">
-          新增產品
-        </button>
-
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>名稱</th>
-                <th>價格</th>
-                <th>修改</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr v-for="product in products">
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                  <button class="btn btn-primary" @click="editProduct(product)">
-                    修改
-                  </button>
-                  <button
-                    class="btn btn-danger"
-                    @click="deleteProduct(product)"
-                  >
-                    刪除
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
     <div
       class="modal fade"
       id="product"
@@ -62,17 +10,7 @@
     >
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="editLabel">編輯產品</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <div class="modal-header"></div>
           <div class="modal-body">
             <div class="row">
               <!-- main product -->
@@ -120,7 +58,7 @@
                   />
 
                   <div class="d-flex">
-                    <p v-for="tag in product.tags">
+                    <p v-for="tag in product.tags" class="unstyled">
                       <span class="p-1">{{ tag }}</span>
                     </p>
                   </div>
@@ -151,19 +89,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              @click="addProduct()"
-              type="button"
-              class="btn btn-primary"
-              v-if="modal == 'new'"
-            >
+            <button @click="addProduct()" type="button" class="btn btn-primary">
               新增
             </button>
             <button
               @click="updateProduct()"
               type="button"
               class="btn btn-primary"
-              v-if="modal == 'edit'"
             >
               保存
             </button>
@@ -178,18 +110,162 @@
         </div>
       </div>
     </div>
+    <div class="ts modals dimmer">
+      <dialog id="modal" class="ts basic modal" open>
+        <i class="close icon"></i>
+        <div class="ts icon header"><i class="smile icon"></i> 新增產品</div>
+        <div class="content">
+          <div class="inputs">
+            <div class="ts mini basic input">
+              <input
+                type="text"
+                placeholder="產品名稱"
+                v-model="product.name"
+              />
+            </div>
+            <div class="ts mini basic input">
+              <input
+                type="text"
+                placeholder="產品售價"
+                v-model="product.price"
+              />
+            </div>
+            <div class="ts mini basic input">
+              <input
+                type="text"
+                @keyup.enter="addTag"
+                placeholder="產品標籤"
+                v-model="tag"
+                @keyup.188="addTag"
+              />
+            </div>
+            <div class="ts mini resizable basic input">
+              <textarea
+                type="text"
+                placeholder="產品簡介"
+                v-model="product.description"
+              />
+            </div>
+            <div class="upfile">
+              <label for="product_image">產品圖</label>
+              <input type="file" @change="uploadImage" class="form-control" />
+            </div>
+          </div>
+          <div class="six wide column">
+            <div class="showimg">
+              <div
+                class="ts mini image"
+                v-for="(image, index) in product.images"
+              >
+                <img :src="image" />
+                <i
+                  class="mini delete icon"
+                  @click="deleteImage(image, index)"
+                ></i>
+              </div>
+            </div>
+            <!-- 產品demo -->
+            <div class="ts top attached info segment">
+              <div class="ts large header">{{ product.name }}</div>
+              <div class="ts mini header">
+                <p v-for="tag in product.tags">{{ tag }},</p>
+              </div>
+            </div>
+            <div class="ts attached segment">
+              <div class="ts single line items">
+                <!-- 單個項目 -->
+                <div class="item">
+                  <div
+                    class="ts tiny image"
+                    v-for="(image, index) in product.images"
+                    v-if="index < 1"
+                  >
+                    <img :src="image" />
+                  </div>
+                  <div class="content">
+                    <a class="header">${{ product.price }}</a>
+                    <div class="description">
+                      {{ product.description }}
+                    </div>
+                  </div>
+                </div>
+                <!-- / 單個項目 -->
+              </div>
+            </div>
+
+            <!-- / 產品demo -->
+          </div>
+        </div>
+        <div class="actions">
+          <button class="ts inverted basic deny button">
+            不
+          </button>
+          <button
+            class="ts inverted basic positive button"
+            @click="addProduct()"
+          >
+            新增
+          </button>
+          <button
+            class="ts inverted basic positive button"
+            @click="updateProduct()"
+          >
+            保存
+          </button>
+        </div>
+      </dialog>
+    </div>
+    <!-- 主要片段 -->
+    <div
+      class="ts center aligned attached vertically very padded secondary segment"
+    >
+      <button @click="addNew" class="ts basic primary circular button new">
+        新增產品
+      </button>
+      <!-- 容器 -->
+      <div class="ts narrow container">
+        <!-- 卡片群組 -->
+        <div class="ts stackable two flatted cards">
+          <!-- 單個卡片 -->
+          <div class="ts card" v-for="product in products">
+            <div v-for="(image, index) in product.images" v-if="index < 1">
+              <img :src="image" alt="" class="image" width="50px" />
+            </div>
+            <div class="left aligned content">
+              <div class="description">
+                <h5 class="unstyled">{{ product.name }}</h5>
+                <h5 class="unstyled">${{ product.price }}</h5>
+              </div>
+              <div class="ts fluid bottom attached buttons">
+                <button class="ts  button " @click="editProduct(product)">
+                  <i class="edit icon"></i>
+                </button>
+                <div class="or" data-text="Or"></div>
+                <button
+                  class="ts negative button"
+                  @click="deleteProduct(product)"
+                >
+                  <i class="delete icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- / 單個卡片 -->
+        </div>
+        <!-- / 卡片群組 -->
+      </div>
+      <!-- / 容器 -->
+    </div>
+    <!-- / 主要片段 -->
   </div>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 import { fb, db } from "../firebase";
 
 export default {
   name: "Products",
-  components: {
-    VueEditor,
-  },
+  components: {},
   props: {
     msg: String,
   },
@@ -205,7 +281,7 @@ export default {
         images: [],
       },
       activeItem: null,
-      modal: null,
+
       tag: null,
     };
   },
@@ -273,9 +349,10 @@ export default {
     },
 
     addNew() {
-      this.modal = "new";
+      // this.modal = "new";
+      // $("#product").modal("show");
       this.reset();
-      $("#product").modal("show");
+      ts("#modal").modal("show");
     },
     updateProduct() {
       this.$firestore.products.doc(this.product.id).update(this.product);
@@ -284,12 +361,12 @@ export default {
         title: "保存成功",
       });
 
-      $("#product").modal("hide");
+      ts("#modal").modal("hide");
     },
     editProduct(product) {
-      this.modal = "edit";
+      // this.modal = "edit";
       this.product = product;
-      $("#product").modal("show");
+      ts("#modal").modal("show");
     },
     deleteProduct(doc) {
       Swal.fire({
@@ -321,7 +398,6 @@ export default {
         type: "success",
         title: "新增成功",
       });
-      $("#product").modal("hide");
     },
   },
   created() {},
@@ -330,15 +406,65 @@ export default {
 //
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.img-wrapp {
-  position: relative;
+.products {
+  height: 100%;
+  .modals {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    .content {
+      display: flex;
+      justify-content: space-around;
+      .showimg {
+        i {
+          cursor: pointer;
+        }
+      }
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        width: 178px;
+        .upfile {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .ts.mini.header {
+        margin: 0 !important;
+        p {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+  .new {
+    margin-bottom: 10px;
+  }
 }
-.img-wrapp span.delete-img {
-  position: absolute;
-  top: -14px;
-  left: -2px;
-}
-.img-wrapp span.delete-img:hover {
-  cursor: pointer;
+.container {
+  height: 100%;
+  .cards {
+    .card {
+      background: rgb(255, 255, 255);
+      .image {
+        position: relative;
+        width: 100px;
+      }
+      .left.content {
+        .description {
+          font-size: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
 import Admin from "../views/Admin.vue";
+import Dashboard from "../views/Dashboard.vue";
 import Overview from "../views/Overview.vue";
 import Products from "../views/Products.vue";
 import Orders from "../views/Orders.vue";
@@ -27,6 +28,11 @@ const router = new Router({
         requiresAuth: true,
       },
       children: [
+        {
+          path: "dashboard",
+          name: "dashboard",
+          component: Dashboard,
+        },
         {
           path: "overview",
           name: "overview",

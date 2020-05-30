@@ -1,18 +1,6 @@
 <template>
   <div class="overview">
-    <div class="container h-100">
-      <div class="intro h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-          <div class="col-md-6">
-            <h3>銷售圖表</h3>
-            <p>在這裡，您可以看見商品銷售的狀況。</p>
-          </div>
-          <div class="col-md-6">
-            <img src="/img/svg/overview.svg" alt class="img-fluid" />
-          </div>
-        </div>
-      </div>
-    </div>
+    123
   </div>
 </template>
 

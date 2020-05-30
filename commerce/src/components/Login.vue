@@ -497,7 +497,7 @@ export default {
       fb.auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.replace("admin");
+          this.$router.replace("admin/dashboard");
         })
         .catch(function(error) {
           $(".svg path").css("stroke", "red");

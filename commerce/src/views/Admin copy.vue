@@ -116,7 +116,6 @@ import Mid from "@/components/Mid.vue";
 import { fb } from "../firebase";
 
 export default {
-  name: "admin",
   data() {
     return {
       name: null,
