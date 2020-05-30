@@ -1,115 +1,7 @@
 <template>
   <div class="products">
-    <div
-      class="modal fade"
-      id="product"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="editLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header"></div>
-          <div class="modal-body">
-            <div class="row">
-              <!-- main product -->
-              <div class="col-md-8">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    placeholder="產品名稱"
-                    v-model="product.name"
-                    class="form-control"
-                  />
-                </div>
+    
 
-                <div class="form-group">
-                  <input
-                    type="text"
-                    placeholder="產品簡介"
-                    v-model="product.description"
-                    class="form-control"
-                    style="height:168px"
-                  />
-                </div>
-              </div>
-              <!-- product sidebar -->
-              <div class="col-md-4">
-                <h4 class="display-6">產品資訊</h4>
-                <hr />
-
-                <div class="form-group">
-                  <input
-                    type="text"
-                    placeholder="產品價格"
-                    v-model="product.price"
-                    class="form-control"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <input
-                    type="text"
-                    @keyup.188="addTag"
-                    placeholder="產品標籤"
-                    v-model="tag"
-                    class="form-control"
-                  />
-
-                  <div class="d-flex">
-                    <p v-for="tag in product.tags" class="unstyled">
-                      <span class="p-1">{{ tag }}</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="product_image">產品圖</label>
-                  <input
-                    type="file"
-                    @change="uploadImage"
-                    class="form-control"
-                  />
-                </div>
-
-                <div class="form-group d-flex">
-                  <div class="p-1" v-for="(image, index) in product.images">
-                    <div class="img-wrapp">
-                      <img :src="image" alt width="80px" />
-                      <span
-                        class="delete-img"
-                        @click="deleteImage(image, index)"
-                        >X</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button @click="addProduct()" type="button" class="btn btn-primary">
-              新增
-            </button>
-            <button
-              @click="updateProduct()"
-              type="button"
-              class="btn btn-primary"
-            >
-              保存
-            </button>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              關閉
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="ts modals dimmer">
       <dialog id="modal" class="ts basic modal" open>
         <i class="close icon"></i>
@@ -148,7 +40,7 @@
             </div>
             <div class="upfile">
               <label for="product_image">產品圖</label>
-              <input type="file" @change="uploadImage" class="form-control" />
+              <input type="file" @change="uploadImage"  />
             </div>
           </div>
           <div class="six wide column">
