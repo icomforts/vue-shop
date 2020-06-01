@@ -41,7 +41,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .btn {
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 5px 10px;
   color: rgb(252, 252, 252);
   cursor: pointer;

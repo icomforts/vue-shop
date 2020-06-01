@@ -4,10 +4,6 @@
       <div class="intro h-100">
         <div class="row h-100 justify-content-center align-items-center">
           <div class="col-md-6">
-            <h3>訂單頁面</h3>
-            <p>在這裡，您可以管理目前訂單狀況。</p>
-          </div>
-          <div class="col-md-6">
             <img src="/img/svg/orders.svg" class="img-fluid" />
           </div>
         </div>

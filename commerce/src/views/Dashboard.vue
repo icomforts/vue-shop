@@ -4,7 +4,7 @@
     <div class="stretched wide column">
       <div class="ts three cards">
         <!-- 本月拜訪次數 -->
-        <div class="ts card">
+        <div class="ts card cardd">
           <div class="content">
             <!-- 統計數據 -->
             <div class="label">本月拜訪次數</div>
@@ -23,7 +23,7 @@
         <!-- / 本月拜訪次數 -->
 
         <!-- 總會員數 -->
-        <div class="ts card">
+        <div class="ts card cardd">
           <div class="content">
             <!-- 統計數據 -->
             <div class="label">購物情形</div>
@@ -42,7 +42,7 @@
         <!-- / 總會員數 -->
 
         <!-- 平均在線分鐘數 -->
-        <div class="ts card">
+        <div class="ts card cardd">
           <div class="content">
             <!-- 統計數據 -->
             <div class="label">平均在線分鐘數</div>
@@ -84,8 +84,15 @@ export default {
 .dashboard {
   width: 100%;
 }
-.ts.card {
-  height: 50vh;
+.ts.three.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ts.cardd {
+  height: 25vh;
+  width: 80% !important;
   .ts.left.aligned.statistic {
     margin: 0;
     display: flex;

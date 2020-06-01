@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
-    <nav class="navbar">
+    <nav class="navbar " @click="toggle()">
       <div class="ham"><i class="angle double down icon"></i></div>
+
       <ul class="unstyled">
         <li id="logo">
           <a href="#" class="unstyled">
@@ -35,6 +36,7 @@
           </a>
         </li>
       </ul>
+      <div class="close"><i class="angle double up icon"></i></div>
     </nav>
   </div>
 </template>
@@ -58,6 +60,9 @@ export default {
     });
   },
   methods: {
+    toggle() {
+      $(".navbar").toggleClass("toggle");
+    },
     login() {
       ts("#loginmodals").modal("show");
     },
@@ -77,6 +82,7 @@ export default {
   opacity: 0;
 }
 .navbar {
+  cursor: pointer;
   position: fixed;
   background: rgb(0, 0, 0);
   transition: all 600ms ease;
@@ -94,6 +100,16 @@ export default {
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
+    i {
+      color: white;
+    }
+  }
+  .close {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 95%;
     transform: translate(-50%, -50%);
     i {
       color: white;
@@ -130,7 +146,7 @@ export default {
     }
   }
 }
-.navbar:hover {
+.navbar.toggle {
   height: 5rem;
   width: 100%;
   border: none;
@@ -138,6 +154,7 @@ export default {
   .ham {
     display: none;
   }
+
   ul {
     display: flex;
     flex-direction: row;
@@ -152,10 +169,19 @@ export default {
     }
   }
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 769px) {
+  #logo {
+    display: none;
+  }
   .navbar:hover {
     .ham ul li a {
       font-size: 10px;
+    }
+  }
+  .navbar.toggle {
+    height: 20vh;
+    .close {
+      display: block;
     }
   }
 }

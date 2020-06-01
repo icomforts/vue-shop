@@ -1,7 +1,5 @@
 <template>
   <div class="products">
-    
-
     <div class="ts modals dimmer">
       <dialog id="modal" class="ts basic modal" open>
         <i class="close icon"></i>
@@ -28,7 +26,6 @@
                 @keyup.enter="addTag"
                 placeholder="產品標籤"
                 v-model="tag"
-                @keyup.188="addTag"
               />
             </div>
             <div class="ts mini resizable basic input">
@@ -40,7 +37,7 @@
             </div>
             <div class="upfile">
               <label for="product_image">產品圖</label>
-              <input type="file" @change="uploadImage"  />
+              <input type="file" @change="uploadImage" />
             </div>
           </div>
           <div class="six wide column">
@@ -119,9 +116,9 @@
         <!-- 卡片群組 -->
         <div class="ts stackable two flatted cards">
           <!-- 單個卡片 -->
-          <div class="ts card" v-for="product in products">
+          <div class="ts card cardp" v-for="product in products">
             <div v-for="(image, index) in product.images" v-if="index < 1">
-              <img :src="image" alt="" class="image" width="50px" />
+              <img :src="image" alt="" class="image" />
             </div>
             <div class="left aligned content">
               <div class="description">
@@ -340,11 +337,12 @@ export default {
 .container {
   height: 100%;
   .cards {
-    .card {
+    .cardp {
+      flex-wrap: wrap;
       background: rgb(255, 255, 255);
       .image {
         position: relative;
-        width: 100px;
+        width: 20%;
       }
       .left.content {
         .description {

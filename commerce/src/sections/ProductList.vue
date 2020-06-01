@@ -107,4 +107,39 @@ export default {
   }
   background: rgb(59, 52, 52);
 }
+@media only screen and (max-width: 767px) {
+  .test {
+    flex-direction: column-reverse;
+    height: 100%;
+    .info,
+    .img {
+      width: 100% !important;
+    }
+    .info {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 0.5rem;
+      }
+    }
+  }
+  .img2 {
+    width: 75% !important;
+    height: 75% !important;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .test {
+    flex-direction: column-reverse;
+    .info,
+    .img {
+      width: 100% !important;
+    }
+  }
+  .img2 {
+    width: 75% !important;
+    height: 75% !important;
+  }
+}
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div class="admin">
-    <div class="ts left vertical fluid inverted visible menu sidebar">
-      <router-link to="/admin/dashboard">
-        <h1 class="center aligned item" id="title">The shoP</h1>
-      </router-link>
+    <div class="ts left vertical fluid inverted animating menu sidebar">
+      <div @click="menuclose()">
+        <router-link to="/admin/dashboard">
+          <h1 class="center aligned item" id="title">The shoP</h1>
+        </router-link>
+      </div>
       <!-- 個人資料項目 -->
 
       <div class="center aligned item">
@@ -15,23 +17,29 @@
 
       <!-- / 個人資料項目 -->
 
+      <!-- 訂單 -->
+      <div @click="menuclose()">
+        <router-link to="/admin/orders" class="item">
+          <i class="line chart icon"></i>
+          商品訂單
+        </router-link>
+      </div>
+      <!-- / 訂單 -->
       <!-- 回報處理 -->
-      <router-link to="/admin/overview" class="item">
-        <i class="line chart icon"></i>
-        商品銷售
-      </router-link>
-      <!-- / 回報處理 -->
-      <!-- 回報處理 -->
-      <router-link to="/admin/products" class="item">
-        <i class="block layout icon"></i>
-        商品管理
-      </router-link>
+      <div @click="menuclose()">
+        <router-link to="/admin/products" class="item">
+          <i class="block layout icon"></i>
+          商品管理
+        </router-link>
+      </div>
       <!-- / 回報處理 -->
       <!-- 使用者管理 -->
-      <router-link to="/admin/profile" class="item">
-        <i class="user icon"></i>
-        使用者資訊
-      </router-link>
+      <div @click="menuclose()">
+        <router-link to="/admin/profile" class="item">
+          <i class="user icon"></i>
+          使用者資訊
+        </router-link>
+      </div>
       <!-- / 使用者管理 -->
 
       <!-- 底部選單 -->
@@ -83,6 +91,11 @@ export default {
   methods: {
     menutoggle() {
       ts(".left.inverted.sidebar").sidebar("toggle");
+      ts("main").toggleClass("hide");
+    },
+    menuclose() {
+      ts(".left.inverted.sidebar").sidebar("toggle");
+      ts("main").toggleClass("hide");
     },
     logout() {
       fb.auth()
@@ -106,6 +119,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media only screen and (max-width: 1024px) {
+  .hide {
+    display: none;
+  }
+}
+
 #title {
   color: white;
   font-family: "homefont" !important;

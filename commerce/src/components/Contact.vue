@@ -1,8 +1,7 @@
 <template>
   <div class="contact">
     <div class="ts modals dimmer">
-      <dialog id="contactmodals" class="ts basic modal" open>
-        <i class="close icon"></i>
+      <dialog id="contactmodals" class="ts basic closable modal" open>
         <div class="ts icon header">
           <i class="smile icon"></i> 對我們有什麼不滿呢
         </div>
