@@ -1,4 +1,4 @@
 # vue 電商練習
 
-利用vue搭配firebase並串接stripe支付系統製作的簡易電商網站 
-DEMO:https://vue-shop-65048.web.app/
+利用 vue 搭配 firebase 並串接 stripe 支付系統製作的簡易電商網站 
+
